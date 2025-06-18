@@ -86,14 +86,14 @@
 
 
 import React, { useContext, useState } from 'react';
-import { doctors } from '../assets/assets';
+// import { doctors } from '../assets/assets';
 import { useNavigate } from 'react-router-dom';
-//import { AppContext } from '../context/AppContext';
+import { AppContext } from '../context/AppContext';
 
 const TopDoctors = () => {
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
-  //const {doctors}=useContext(AppContext)
+  const {doctors}=useContext(AppContext)
 
   const visibleDoctors = showAll ? doctors : doctors.slice(0, 10);
 
