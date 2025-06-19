@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <div className='flex items-center justify-between text-sm py-4 mb-5 border-b border-b-gray-400'>
       {/* Logo */}
-      <img className='w-44 cursor-pointer' src={assets.careconnect} alt="logo" />
+      <img onClick={()=>navigate('/')} className='w-44 cursor-pointer' src={assets.careconnect} alt="logo" />
 
       {/* Navigation Links */}
       <ul className='hidden md:flex items-center gap-6 font-medium'>
