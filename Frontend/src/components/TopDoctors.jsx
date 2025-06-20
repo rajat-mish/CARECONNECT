@@ -112,7 +112,7 @@ const TopDoctors = () => {
         {visibleDoctors.map((item, index) => (
           <div
             key={index}
-            onClick={() => navigate(`/appointment/${item._id}`)}
+            onClick={() => {navigate(`/appointment/${item._id}`)}}
             className="cursor-pointer bg-white border border-gray-200 rounded-xl overflow-hidden  hover:-translate-y-[10px] transition-all duration-500"
           >
            <div className="bg-blue-50 w-full aspect-[3/4] flex items-end justify-center overflow-hidden rounded-t-xl">
