@@ -1,6 +1,8 @@
 /* app.css or index.css */
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
 @import "tailwindcss";
+@import 'react-phone-input-2/lib/style.css'; 
+
 
 *{
   font-family: Outfit;
@@ -18,3 +20,10 @@
 ::-webkit-scrollbar{
   @apply hidden
 }  
+
+
+@media (max-width:740px){
+  .active p{
+    @apply text-white bg-primary
+  }
+}
