@@ -10,6 +10,7 @@ import About from './pages/About'
 import Contact from './pages/Contact'
 import Navbar from './components/Navbar.jsx'
 import Footer from './components/Footer.jsx'
+ import { ToastContainer, toast } from 'react-toastify';
 
 
 
@@ -18,7 +19,7 @@ import Footer from './components/Footer.jsx'
 const App = () => {
   return (
     <div className='mx-4 sm:mx-[10%]'>
-    
+    <ToastContainer/>
 
       <Navbar/>
  
