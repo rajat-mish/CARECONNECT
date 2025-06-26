@@ -393,26 +393,28 @@
 
 
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import { assets } from '../assets/assets';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+
+
+import { AppContext } from '../context/AppContext.jsx';
 
 const MyProfile = () => {
-  const [userData, setUserData] = useState({
-    name: 'John Doe',
-    image: assets.profile_pic,
-    email: 'johndoe@gmail.com',
-    phone: '+919876543210',
-    address: {
-      line1: '57th Cross, Richmond',
-      line2: 'Circle, Church Road, London',
-    },
-    gender: 'Male',
-    dob: '2000-12-31',
-  });
+  const {userData,setUserData}=useContext(AppContext)
 
   const [isEdit, setIsEdit] = useState(false);
+  const navigate = useNavigate();
+const { token } = useContext(AppContext); // also pull token
+
+useEffect(() => {
+  if (!token) {
+    navigate('/'); // Redirect to homepage if logged out
+  }
+}, [token]);
+
 
   const handleChange = (field, value) => {
     if (field === 'address') {
@@ -524,7 +526,8 @@ const MyProfile = () => {
           <div>
             <label className="block mb-1">Address</label>
             <textarea
-              value={`${userData.address.line1}, ${userData.address.line2}`}
+              value={`${userData.address?.line1 || ''}, ${userData.address?.line2 || ''}`}
+
               disabled={!isEdit}
               onChange={e =>
                 handleChange('address', {
