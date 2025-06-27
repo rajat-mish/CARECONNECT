@@ -126,7 +126,7 @@ const AuthForm = () => {
 
           <button
             type="submit"
-            className="w-full bg-primary text-white py-2 rounded hover:opacity-90 transition"
+            className="w-full bg-primary text-white py-2 rounded hover:opacity-90 transition cursor-pointer"
           >
             {mode === 'signup' ? 'Create account' : 'Login'}
           </button>
@@ -139,7 +139,7 @@ const AuthForm = () => {
           <button
             type="button"
             onClick={() => setMode(mode === 'signup' ? 'login' : 'signup')}
-            className="text-primary underline ml-1"
+            className="text-primary underline ml-1 cursor-pointer"
           >
             {mode === 'signup' ? 'Login here' : 'Sign up'}
           </button>
