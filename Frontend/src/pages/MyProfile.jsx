@@ -603,7 +603,7 @@ useEffect(() => {
           </div>
 
           {/* Address */}
-          <div>
+          {/* <div>
             <label className="block mb-1">Address</label>
             <textarea
               value={`${userData.address?.line1 || ''}, ${userData.address?.line2 || ''}`}
@@ -620,7 +620,36 @@ useEffect(() => {
               }`}
               rows={2}
             />
-          </div>
+          </div> */}
+
+          <div>
+  <label className="block mb-1">Address Line 1</label>
+  <input
+    type="text"
+    value={userData.address?.line1 || ''}
+    disabled={!isEdit}
+    onChange={e => handleChange('address', { 
+      ...userData.address, 
+      line1: e.target.value 
+    })}
+    className={`w-full p-3 border rounded-md ${isEdit ? 'bg-white' : 'bg-gray-100'}`}
+  />
+</div>
+
+<div className="mt-4">
+  <label className="block mb-1">Address Line 2</label>
+  <input
+    type="text"
+    value={userData.address?.line2 || ''}
+    disabled={!isEdit}
+    onChange={e => handleChange('address', { 
+      ...userData.address, 
+      line2: e.target.value 
+    })}
+    className={`w-full p-3 border rounded-md ${isEdit ? 'bg-white' : 'bg-gray-100'}`}
+  />
+</div>
+
         </div>
 
         {/* Basic Info */}

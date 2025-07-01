@@ -22,8 +22,6 @@
 
 // // export default TopDoctors
 
-
-
 // import React, { useState } from 'react';
 // import { doctors } from '../assets/assets';
 // import { Link, useNavigate } from 'react-router-dom';
@@ -62,7 +60,7 @@
 //             </div>
 
 //             </div>
-         
+
 //         ))}
 //       </div>
 
@@ -83,22 +81,23 @@
 
 // export default TopDoctors;
 
-
-
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 // import { doctors } from '../assets/assets';
-import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../context/AppContext';
+import { useNavigate } from "react-router-dom";
+import { AppContext } from "../context/AppContext";
 
 const TopDoctors = () => {
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
-  const {doctors}=useContext(AppContext)
+  const { doctors } = useContext(AppContext);
 
   const visibleDoctors = showAll ? doctors : doctors.slice(0, 10);
 
   return (
-    <section className="w-full px-6 md:px-20 py-16 bg-white text-gray-800" id="speciality">
+    <section
+      className="w-full px-6 md:px-20 py-16 bg-white text-gray-800"
+      id="speciality"
+    >
       {/* Header Section */}
       <div className="flex flex-col items-center gap-4 text-center">
         <h2 className="text-3xl font-semibold">Top Doctors to Book</h2>
@@ -109,37 +108,47 @@ const TopDoctors = () => {
 
       {/* Doctor Cards Grid */}
       <div className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-        {visibleDoctors.map((item, index) => (
-          <div
-            key={index}
-            onClick={() => {navigate(`/appointment/${item._id}`)}}
-            className="cursor-pointer bg-white border border-gray-200 rounded-xl overflow-hidden  hover:-translate-y-[10px] transition-all duration-500"
-          >
-           <div className="bg-blue-50 w-full aspect-[3/4] flex items-end justify-center overflow-hidden rounded-t-xl">
-  <img
-    src={item.image}
-    alt={item.name}
-    className="h-full object-cover"
-  />
-</div>
+        {visibleDoctors.map((item, index) => {
+  const isAvailable = item.available === true;
 
-            <div className="p-4">
-              <div className="flex items-center text-xs text-green-600 mb-1">
-                <span className="h-2 w-2 bg-green-500 rounded-full mr-2"></span>
-                Available
-              </div>
-              <p className="font-medium text-base">{item.name}</p>
-              <p className="text-sm text-gray-500">{item.speciality}</p>
-            </div>
-          </div>
-        ))}
+  console.log('▶︎', item.name, '| available =', item.available, '| type =', typeof item.available);
+
+  return (
+    <div
+      key={index}
+      onClick={() => navigate(`/appointment/${item._id}`)}
+      className="cursor-pointer bg-white border border-gray-200 rounded-xl overflow-hidden hover:-translate-y-[10px] transition-all duration-500"
+    >
+      <div className="bg-blue-50 w-full aspect-[3/4] flex items-end justify-center overflow-hidden rounded-t-xl">
+        <img
+          src={item.image}
+          alt={item.name}
+          className="h-full object-cover"
+        />
+      </div>
+
+      <div className="p-4">
+        <div className={`flex items-center text-xs ${isAvailable ? 'text-green-600' : 'text-gray-500'} mb-1`}>
+          <span className={`h-2 w-2 ${isAvailable ? 'bg-green-500' : 'bg-gray-500'} rounded-full mr-2`}></span>
+          {isAvailable ? 'Available' : 'Unavailable'}
+        </div>
+        <p className="font-medium text-base">{item.name}</p>
+        <p className="text-sm text-gray-500">{item.speciality}</p>
+      </div>
+    </div>
+  );
+})}
+
       </div>
 
       {/* Show More Button */}
       {!showAll && doctors.length > 10 && (
         <div className="flex justify-center mt-10">
           <button
-            onClick={() =>{navigate('/doctors');scrollTo(0,0)}}
+            onClick={() => {
+              navigate("/doctors");
+              scrollTo(0, 0);
+            }}
             className="px-6 py-2 bg-[#EDF0FF] hover:bg-[#dce3ff] text-[#5D73FF] rounded-full font-medium shadow-md transition-all"
           >
             More
